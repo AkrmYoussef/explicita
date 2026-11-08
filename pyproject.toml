@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "explicita"
+version = "0.1.0"
+description = "A small service that explains the decisions of a loan-approval model (SHAP, LIME, counterfactuals) and checks if the explanations can be trusted."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "lightgbm>=4.0",
+    "shap>=0.44",
+    "lime>=0.2.0.1",
+    "dice-ml>=0.11",
+    "scipy>=1.10",
+    "joblib>=1.3",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.50", "requests>=2.31", "altair>=5.0"]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning", "ignore::UserWarning"]
